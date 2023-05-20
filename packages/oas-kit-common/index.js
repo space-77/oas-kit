@@ -1,6 +1,8 @@
 'use strict';
 
 const sjs = require('fast-safe-stringify');
+const checkChinese = require("is-chinese");
+const isWordCharacter = require("is-word-character");
 
 const colour = process.env.NODE_DISABLE_COLORS ?
     { red: '', yellow: '', green: '', normal: '' } :
@@ -107,10 +109,20 @@ const httpMethods = [
     'trace'
 ];
 
+function isChinese(text) {
+    return checkChinese(text, { includePunctuation: false });
+}
+
+function isWord(text) {
+    if (isWordCharacter(text)) return true;
+    return isChinese(text);
+}
+
 function sanitise(s) {
     s = s.replace('[]','Array');
     let components = s.split('/');
-    components[0] = components[0].replace(/[^A-Za-z0-9_\-\.]+|\s+/gm, '_');
+    components[0] = components[0].split("").filter(isWord).join("").replace(/^\d+\S+/, ($1) => `n${$1}`);
+    if (components[0] === '') components[0] = '_'
     return components.join('/');
 }
 

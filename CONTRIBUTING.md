@@ -10,4 +10,4 @@ Please run the tests before submitting your pull request.
 * `npm test`
 
 # Known issues
-[GitHub search](https://github.com/Mermade/oas-kit/search?utf8=%E2%9C%93&q=fixme+language%3Ajavascript&type=)
+[GitHub search](https://github.com/space-77/oas-kit/search?utf8=%E2%9C%93&q=fixme+language%3Ajavascript&type=)

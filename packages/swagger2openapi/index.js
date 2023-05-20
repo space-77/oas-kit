@@ -1435,7 +1435,7 @@ function convertObj(swagger, options, callback) {
             origin.format = 'swagger';
             origin.version = swagger.swagger;
             origin.converter = {};
-            origin.converter.url = 'https://github.com/mermade/oas-kit';
+            origin.converter.url = 'https://github.com/space-77/oas-kit';
             origin.converter.version = ourVersion;
             openapi["x-origin"].push(origin);
         }

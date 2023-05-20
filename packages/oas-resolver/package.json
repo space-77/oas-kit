@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "funding": "https://github.com/Mermade/oas-kit?sponsor=1",
+  "funding": "https://github.com/space-77/oas-kit?sponsor=1",
   "keywords": [
     "openapi",
     "swagger",
@@ -31,10 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mermade/oas-kit.git"
+    "url": "https://github.com/space-77/oas-kit.git"
   },
   "bugs": {
-    "url": "https://github.com/mermade/oas-kit/issues"
+    "url": "https://github.com/space-77/oas-kit/issues"
   },
   "gitHead": "da527220c78530e836c33f77178493aab93d385c"
 }

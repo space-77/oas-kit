@@ -8,7 +8,7 @@
     "oas-validate": "./oas-validate.js",
     "boast": "./boast.js"
   },
-  "funding": "https://github.com/Mermade/oas-kit?sponsor=1",
+  "funding": "https://github.com/space-77/oas-kit?sponsor=1",
   "scripts": {
     "test": "mocha"
   },
@@ -25,16 +25,17 @@
     ]
   },
   "repository": {
-    "url": "https://github.com/Mermade/oas-kit.git",
+    "url": "https://github.com/space-77/oas-kit.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/mermade/oas-kit/issues"
+    "url": "https://github.com/space-77/oas-kit/issues"
   },
   "author": "Mike Ralphson <mike.ralphson@gmail.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
     "call-me-maybe": "^1.0.1",
+    "deep-for-each": "^3.0.0",
     "node-fetch": "^2.6.1",
     "node-fetch-h2": "^2.3.0",
     "node-readfiles": "^0.2.0",

@@ -20,7 +20,6 @@
   "directories": {
     "test": "test"
   },
-  "funding": "https://www.linode.com/?r=5734be467cc501b23267cf66d451bc339042ddfa",
   "scripts": {
     "test": "npx mocha",
     "lint": "npx eslint packages/*/*.js test/*.js",
@@ -34,13 +33,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mermade/oas-kit.git"
+    "url": "git+https://github.com/space-77/oas-kit.git"
   },
   "author": "Mike Ralphson",
   "bugs": {
-    "url": "https://github.com/mermade/oas-kit/issues"
+    "url": "https://github.com/space-77/oas-kit/issues"
   },
-  "homepage": "https://github.com/mermade/oas-kit#readme",
+  "homepage": "https://github.com/space-77/oas-kit#readme",
   "keywords": [
     "openapi",
     "oas",
