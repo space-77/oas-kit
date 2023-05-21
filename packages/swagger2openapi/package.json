@@ -1,8 +1,9 @@
 {
-  "name": "swagger2openapi",
-  "version": "7.0.8",
+  "name": "do-swagger2openapi",
+  "version": "7.0.12",
   "description": "Convert Swagger 2.0 definitions to OpenApi 3.0 and validate",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "bin": {
     "swagger2openapi": "./swagger2openapi.js",
     "oas-validate": "./oas-validate.js",
@@ -10,7 +11,8 @@
   },
   "funding": "https://github.com/space-77/oas-kit?sponsor=1",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "node dev"
   },
   "browserify": {
     "transform": [
@@ -36,10 +38,10 @@
   "dependencies": {
     "call-me-maybe": "^1.0.1",
     "deep-for-each": "^3.0.0",
+    "do-oas-kit-common": "^1.0.10",
     "node-fetch": "^2.6.1",
     "node-fetch-h2": "^2.3.0",
     "node-readfiles": "^0.2.0",
-    "oas-kit-common": "^1.0.8",
     "oas-resolver": "^2.5.6",
     "oas-schema-walker": "^1.1.5",
     "oas-validator": "^5.0.8",

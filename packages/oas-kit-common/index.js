@@ -115,13 +115,16 @@ function isChinese(text) {
 
 function isWord(text) {
     if (isWordCharacter(text)) return true;
+    if (['«','»'].includes(text)) return true;
     return isChinese(text);
 }
 
 function sanitise(s) {
     s = s.replace('[]','Array');
     let components = s.split('/');
-    components[0] = components[0].split("").filter(isWord).join("").replace(/^\d+\S+/, ($1) => `n${$1}`);
+    let n = components[0].split("")
+    const ns = n.filter(isWord).join("").replace(new RegExp(`«+|»+`, 'g'), '_').replace(/_$/, '').replace(/^\d+\S+/, ($1) => `n${$1}`);
+    components[0] = ns;
     if (components[0] === '') components[0] = '_'
     return components.join('/');
 }

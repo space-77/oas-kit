@@ -17,7 +17,8 @@ const cclone = require('reftools/lib/clone.js').circularClone;
 const recurse = require('reftools/lib/recurse.js').recurse;
 const resolver = require('oas-resolver');
 const sw = require('oas-schema-walker');
-const common = require('oas-kit-common');
+const common = require('do-oas-kit-common');
+const { fixConvertErr } = require('./utils.js');
 
 const statusCodes = require('./lib/statusCodes.js').statusCodes;
 
@@ -535,8 +536,10 @@ function processParameter(param, op, path, method, index, openapi, options) {
             if (options.patch) {
                 options.patches++;
                 param.type = 'string';
-            }
-            else {
+            } else if (param.schema !== undefined && param.schema.type !== undefined) {
+              Object.assign(param, param.schema)
+              delete param["schema"]
+            } else {
                 throwError('(Patchable) parameter.type is mandatory for non-body parameters', options);
             }
         }
@@ -1383,6 +1386,7 @@ function detectObjectReferences(obj, options) {
 function convertObj(swagger, options, callback) {
     return maybe(callback, new Promise(function (resolve, reject) {
         if (!swagger) swagger = {};
+        fixConvertErr(swagger);
         options.original = swagger;
         if (!options.text) options.text = yaml.stringify(swagger);
         options.externals = [];

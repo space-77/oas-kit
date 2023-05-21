@@ -1,4 +1,4 @@
-# swagger2openapi
+# do-swagger2openapi
 
 ![logo](https://github.com/Mermade/oas-kit/blob/master/docs/logo.png?raw=true)
 
@@ -19,7 +19,7 @@ Currently tracking [v3.0.x](https://github.com/OAI/OpenAPI-Specification/blob/ma
 ## Installation:
 This is a node.js module, which you can run on the command line. First ensure you have npm installed (tested on version 6.1+), and then install as follows:
 ```bash
-npm install -g swagger2openapi
+npm install -g do-swagger2openapi
 ```
 Or, add it to your node.js projects as shown below in option B.
 
@@ -27,7 +27,7 @@ Or, add it to your node.js projects as shown below in option B.
 ### A. Command line:
 
 ```text
-swagger2openapi [options] [filename|url]
+do-swagger2openapi [options] [filename|url]
 Options:
   --refSiblings        mode to handle $ref's with sibling properties
                                         [choices: "remove", "preserve", "allOf"]
@@ -59,7 +59,7 @@ Options:
 ### B. Node.js API:
 
 ```javascript
-const converter = require('swagger2openapi');
+const converter = require('do-swagger2openapi');
 let options = {};
 //options.patch = true; // fix up small errors in the source definition
 //options.warnOnly = true; // Do not throw on non-patchable errors

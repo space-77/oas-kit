@@ -13,6 +13,8 @@ out/
 dev/
 t/
 
+mock/
+
 test/_*/
 
 # Logs
