@@ -41,7 +41,7 @@
     "do-oas-kit-common": "^1.0.10",
     "node-fetch": "^2.6.1",
     "node-fetch-h2": "^2.3.0",
-    "node-readfiles": "^0.2.0",
+    "node-readfiles": "^0.3.1",
     "oas-resolver": "^2.5.6",
     "oas-schema-walker": "^1.1.5",
     "oas-validator": "^5.0.8",
