@@ -1,0 +1,3 @@
+mock
+*.lock
+node_modules

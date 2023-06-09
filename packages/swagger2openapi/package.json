@@ -1,6 +1,6 @@
 {
   "name": "do-swagger2openapi",
-  "version": "7.0.12",
+  "version": "7.0.13",
   "description": "Convert Swagger 2.0 definitions to OpenApi 3.0 and validate",
   "main": "index.js",
   "types": "types/index.d.ts",

@@ -96,12 +96,20 @@ function fixConvertErr(json) {
 
         subjects.forEach((subject) => {
             subject.originalRef = newValue;
-            subject.$ref = subject.$ref.replace(
-                new RegExp(`${value}$`),
-                newValue
-            );
+            const ref = subject.$ref + pack.name;
+            subject.$ref = ref.replace(value + pack.name, newValue);
         });
     });
+
+    // fix empty ref
+    deepForEach(json, (value, key) => {
+        if (key === "originalRef"){
+            if (!json.definitions[value]) {
+                json.definitions[value] = { type: "object", title: `auto generated  by ${pack.name}` };
+            }
+        }
+    })
+
 }
 
 module.exports = {
