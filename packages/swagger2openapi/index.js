@@ -532,7 +532,7 @@ function processParameter(param, op, path, method, index, openapi, options) {
             delete param['x-example'];
         }
 
-        if ((param.in !== 'body') && (!param.type)) {
+        if ((param.in !== 'body') && (!param.type) && !param.items) {
             if (options.patch) {
                 options.patches++;
                 param.type = 'string';
