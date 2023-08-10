@@ -24,6 +24,7 @@ const statusCodes = require('./lib/statusCodes.js').statusCodes;
 
 const ourVersion = require('./package.json').version;
 
+
 // TODO handle specification-extensions with plugins?
 
 const targetVersion = '3.0.0';
@@ -1386,7 +1387,7 @@ function detectObjectReferences(obj, options) {
 function convertObj(swagger, options, callback) {
     return maybe(callback, new Promise(function (resolve, reject) {
         if (!swagger) swagger = {};
-        fixConvertErr(swagger);
+        const message = fixConvertErr(swagger);
         options.original = swagger;
         if (!options.text) options.text = yaml.stringify(swagger);
         options.externals = [];
@@ -1549,6 +1550,8 @@ function convertObj(swagger, options, callback) {
         openapi.components.requestBodies = {};
         openapi.components.securitySchemes = openapi.securityDefinitions || {};
         openapi.components.schemas = openapi.definitions || {};
+        options.convertMessage = message
+        
         delete openapi.definitions;
         delete openapi.responses;
         delete openapi.parameters;

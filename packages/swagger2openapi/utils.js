@@ -23,6 +23,9 @@ function checkName(name, checkFun) {
 
 function fixConvertErr(json) {
     const modifyList = [];
+    const warnList = [];
+    const errorList = [];
+
     const pack = require(path.join(__dirname, "./package.json"));
 
     deepForEach(json, (value, key, subject) => {
@@ -30,6 +33,9 @@ function fixConvertErr(json) {
             const bodyParams = value.filter((i) => i.in === "body");
 
             if (bodyParams.length > 1) {
+                warnList.push({
+                    msg: `数据结构异常：${subject.operationId}，parameters里存在${bodyParams.length}个body数据，已修正。`,
+                });
                 const names = Object.keys(json.definitions);
                 const parameters = value.filter((i) => i.in !== "body");
                 let name = `M${subject.operationId}Body`;
@@ -70,6 +76,9 @@ function fixConvertErr(json) {
             }
         } else if (key === "in" && value === "path") {
             if (!subject.required) {
+                warnList.push({
+                    msg: `路径参数异常 ${subject.name}, path 参数必须为必传， 已修正。`,
+                });
                 subject.required = true;
             }
         } else if (key === "originalRef") {
@@ -103,13 +112,17 @@ function fixConvertErr(json) {
 
     // fix empty ref
     deepForEach(json, (value, key) => {
-        if (key === "originalRef"){
+        if (key === "originalRef") {
             if (!json.definitions[value]) {
-                json.definitions[value] = { type: "object", title: `auto generated  by ${pack.name}` };
+                json.definitions[value] = {
+                    type: "object",
+                    title: `auto generated  by ${pack.name}`,
+                };
             }
         }
-    })
+    });
 
+    return {warnList, errorList}
 }
 
 module.exports = {
