@@ -89,13 +89,6 @@ function fixConvertErr(json) {
                 });
                 subject.required = true;
             }
-        } else if (key === "in" && value === "query") {
-            if (subject.required === false) {
-                warnList.push({
-                    msg: `路径参数异常 ${subject.name}, query 参数必须为必传， 已修正。`,
-                });
-                delete subject.required;
-            }
         } else if (key === "originalRef") {
             const ref = subject.$ref;
             const newValue = value.replace(/\//g, "");
