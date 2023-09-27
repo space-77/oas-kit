@@ -540,7 +540,7 @@ function processParameter(param, op, path, method, index, openapi, options) {
             } else if (param.schema !== undefined && param.schema.type !== undefined) {
               Object.assign(param, param.schema)
               delete param["schema"]
-            } else {
+            } else if (!param || !param.schema.$ref) {
                 throwError('(Patchable) parameter.type is mandatory for non-body parameters', options);
             }
         }

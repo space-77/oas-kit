@@ -30,6 +30,13 @@ function fixConvertErr(json) {
 
     deepForEach(json, (value, key, subject) => {
         if (key === "parameters" && Array.isArray(value)) {
+            const noType = value.filter((i) => i.in === undefined);
+            noType.forEach((i) => {
+                i.in = "query";
+                warnList.push({
+                    msg: `参数 ${i.name} 异常, 不存在请求类型，已归纳为 query 类型`,
+                });
+            });
             const bodyParams = value.filter((i) => i.in === "body");
 
             if (bodyParams.length > 1) {
@@ -74,12 +81,20 @@ function fixConvertErr(json) {
 
                 json.definitions[name] = definition;
             }
-        } else if (key === "in" && value === "path") {
+        }
+        if (key === "in" && value === "path") {
             if (!subject.required) {
                 warnList.push({
                     msg: `路径参数异常 ${subject.name}, path 参数必须为必传， 已修正。`,
                 });
                 subject.required = true;
+            }
+        } else if (key === "in" && value === "query") {
+            if (subject.required === false) {
+                warnList.push({
+                    msg: `路径参数异常 ${subject.name}, query 参数必须为必传， 已修正。`,
+                });
+                delete subject.required;
             }
         } else if (key === "originalRef") {
             const ref = subject.$ref;
@@ -122,7 +137,7 @@ function fixConvertErr(json) {
         }
     });
 
-    return {warnList, errorList}
+    return { warnList, errorList };
 }
 
 module.exports = {
