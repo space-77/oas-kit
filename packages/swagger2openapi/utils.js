@@ -20,7 +20,6 @@ function checkName(name, checkFun) {
     }
     return name;
 }
-
 function fixConvertErr(json) {
     const modifyList = [];
     const warnList = [];
@@ -29,8 +28,23 @@ function fixConvertErr(json) {
     const pack = require(path.join(__dirname, "./package.json"));
 
     deepForEach(json, (value, key, subject) => {
+        if (key === "$ref" && typeof value === "string") {
+            const dataKey = value.replace("#/definitions/", "");
+            if (!json.definitions[dataKey]) {
+                json.definitions[dataKey] = {
+                    type: "object",
+                    required: [],
+                    properties: {},
+                    description: "Automatically created",
+                };
+            }
+        }
+
         if (key === "parameters" && Array.isArray(value)) {
-            const noType = value.filter((i) => i.in === undefined);
+            const noType = value.filter((i) => {
+                if (/^formData$/i.test(i.in)) i.in = "body";
+                return i.in === undefined;
+            });
             noType.forEach((i) => {
                 i.in = "query";
                 warnList.push({
